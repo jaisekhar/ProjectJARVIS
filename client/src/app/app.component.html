@@ -1,0 +1,86 @@
+<head>
+  <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="../assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <link href="../assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+</head>
+
+<body class="bg-default">
+<div class="main-content">
+<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+  <div class="container px-4">
+    <a class="navbar-brand" routerLink="/">
+      <h1 class="text-white text-capitalize"><i class="ni ni-atom"></i>&nbsp;Movify</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-collapse-main">
+      <!-- Collapse header -->
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a class="text-blue" routerLink="/">
+              MOVIFY
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Navbar items -->
+      <ul class="navbar-nav ml-auto">
+        <li *ngIf="auth.isLoggedIn()" class="nav-item">
+          <a class="nav-link nav-link-icon" routerLink="/movies">
+            <i class="ni ni-planet"></i>
+            <span class="nav-link-inner--text">Dashboard</span>
+          </a>
+        </li>
+        <li *ngIf="!auth.isLoggedIn()" class="nav-item">
+          <a class="nav-link nav-link-icon" routerLink="/register">
+            <i class="ni ni-circle-08"></i>
+            <span class="nav-link-inner--text">Register</span>
+          </a>
+        </li>
+        <li *ngIf="!auth.isLoggedIn()" class="nav-item">
+          <a class="nav-link nav-link-icon" routerLink="/login">
+            <i class="ni ni-key-25"></i>
+            <span class="nav-link-inner--text">Login</span>
+          </a>
+        </li>
+        <li *ngIf="auth.isLoggedIn()" class="nav-item">
+          <a class="nav-link nav-link-icon" routerLink="/profile">
+            <i class="ni ni-single-02"></i>
+            <span class="nav-link-inner--text">{{ auth.getUserDetails()?.first_name | titlecase}}</span>
+          </a>
+        </li>
+        <li *ngIf="auth.isLoggedIn()" class="nav-item">
+          <a class="nav-link nav-link-icon" routerLink="" (click)="auth.logout()">
+            <i class="ni ni-key-25"></i>
+            <span class="nav-link-inner--text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<router-outlet></router-outlet>
+<footer class="py-5">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-12">
+        <div class="copyright text-center text-muted">
+          Designed with passion by  <a class="font-weight-bold ml-1" target="_blank">JARVIS Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</body>
