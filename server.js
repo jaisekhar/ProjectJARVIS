@@ -8,10 +8,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: true
   })
 );
-const mongoURI = 'mongodb://localhost:27017/meanloginreg';
+const mongoURI = 'mongodb+srv://jai:jai@cluster0-smwzh.mongodb.net/test?retryWrites=true&w=majority';
 mongoose
   .connect(
     mongoURI,

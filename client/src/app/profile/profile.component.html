@@ -20,7 +20,8 @@
         <div class="container-fluid d-flex align-items-center">
           <div class="row">
             <div class="col-lg-12 col-md-12">
-              <h1 class="display-2 text-white">Hello {{ details?.first_name | titlecase}}</h1>
+              <h1 *ngIf="details" class="display-2 text-white">Hello {{ details?.first_name | titlecase}}</h1>
+              <h1 *ngIf="google_user" class="display-2 text-white">Hello {{ google_user?.name.split(' ')[0]}}</h1>
               <a href="#!" class="btn btn-info">Edit profile</a>
             </div>
           </div>
@@ -49,25 +50,33 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-username">Username</label>
-                  <input type="text" id="input-username" class="form-control form-control-alternative"  value="{{ details?.first_name }}">
+                  <input *ngIf="details" type="text" id="input-username" class="form-control form-control-alternative"  value="{{ details?.first_name }}">
+                  <input *ngIf="google_user" type="text" id="input-username" class="form-control form-control-alternative"  value="{{ google_user?.email }}">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-email">Email address</label>
-                  <input type="email" id="input-email" class="form-control form-control-alternative" value="{{ details?.email }}">
+                  <input *ngIf="details" type="email" id="input-email" class="form-control form-control-alternative" value="{{ details?.email }}">
+                  <input *ngIf="google_user" type="email" id="input-email" class="form-control form-control-alternative" value="{{ google_user?.email }}">
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-6">
+              <div *ngIf="details" class="col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label" for="input-first-name">First name</label>
                   <input type="text" id="input-first-name" class="form-control form-control-alternative" value="{{ details?.first_name }}">
                 </div>
               </div>
-              <div class="col-lg-6">
+              <div *ngIf="google_user" class="col-lg-6">
                 <div class="form-group">
+                  <label class="form-control-label" for="input-first-name">Full name</label>
+                  <input type="text" id="input-first-name" class="form-control form-control-alternative" value="{{ google_user.name }}">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div *ngIf="details" class="form-group">
                   <label class="form-control-label" for="input-last-name">Last name</label>
                   <input type="text" id="input-last-name" class="form-control form-control-alternative"  value="{{ details?.last_name }}">
                 </div>

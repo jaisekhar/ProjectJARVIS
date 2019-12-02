@@ -15,10 +15,21 @@ export interface UserDetails {
 }
 
 export interface MovieDetails {
+  m_id: string;
+  m_url: string;
+  m_cover: string;
+  m_cast: Array<string>;
   m_name: string;
   m_release: string;
-  m_genre: string;
+  m_genre: Array<string>;
   m_score: number;
+  m_positive: number;
+  m_wpositive: number;
+  m_spositive: number;
+  m_negative: number;
+  m_wnegative: number;
+  m_snegative: number;
+  m_neutral: number;
 }
 
 interface TokenResponse {
@@ -116,9 +127,22 @@ export class AuthenticationService {
     });
   }
 
+  public search(keyword): Observable<any> {
+    return this.http.post(`/movies/search`, 'keyword=' + keyword , {
+      headers: { 'Content-Type': `application/x-www-form-urlencoded` }
+    });
+  }
+
+  public details(id): Observable<any> {
+    return this.http.post(`/movies/details`, 'id=' + id , {
+      headers: { 'Content-Type': `application/x-www-form-urlencoded` }
+    });
+  }
+
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('usertoken');
     this.router.navigateByUrl('/');
   }
+
 }

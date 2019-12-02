@@ -26,7 +26,7 @@ users.post('/register', (req, res) => {
       if (!user) {
         User.create(userData)
           .then(user => {
-            const payload = {
+             const payload = {
               _id: user._id,
               first_name: user.first_name,
               last_name: user.last_name,
