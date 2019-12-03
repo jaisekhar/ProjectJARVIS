@@ -1,0 +1,95 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
+  </title>
+  <link href="../../assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="../../assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="../../assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <link href="../../assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+</head>
+
+<body class="">
+<div class="main-content">
+  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row">
+          <form (submit)="search(keyword)" class="col-lg-6 mx-auto" role="form">
+            <div class="input-group">
+                  <div class="input-group input-group-alternative">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                  </div>
+                                  <input class="form-control" placeholder="Search" name="search" type="text" [(ngModel)]="keyword">
+                                </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 *ngIf="!sdetails[0]" class="mb-0">Top Movies</h3>
+            <h3 *ngIf="sdetails[0]" class="mb-0">Search Results:</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col">Movie Name</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Rating</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let movie of mdetails" [hidden]="!movie.m_name">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <div class="sortable">
+                        <span class="mb-0 text-sm" [routerLink]="['/search', movie?.m_id]">{{ movie?.m_name }}</span>
+                    </div>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  {{ movie?.m_genre }}
+                </td>
+                <td>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i> {{ movie?.m_release }}
+                      </span>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="mr-2">{{movie?.m_score}}</span>
+                    <div>
+                      <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" [style.width.%]="movie.m_score*20">
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="../../assets/js/plugins/jquery/dist/jquery.min.js"></script>
+<script src="../../assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+</body>
